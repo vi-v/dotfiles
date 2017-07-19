@@ -1,0 +1,18 @@
+window is ready notification remover
+alternatetab
+auto move windows
+battery status
+caffeine
+coverflow alt-tab
+dash to panel
+guace terminal
+freon
+media player indicator
+no topleft hot corner
+show ip
+sound input and output device chooser
+todo.txt
+topicon plus
+transparent gnome panel
+user themes
+gtile
