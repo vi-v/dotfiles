@@ -1,0 +1,7 @@
+Dumping and loading profiles
+=====
+$ dconf dump /org/gnome/terminal/legacy/profiles:/ | grep -e "\[\:\|visible-name"
+
+$ dconf dump /org/gnome/terminal/legacy/profiles:/:xx-xx-xx-xx/ > sample.dconf
+
+$ dconf load /org/gnome/terminal/legacy/profiles:/:xx-xx-xx-xx/ < sample.dconf
