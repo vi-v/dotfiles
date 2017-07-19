@@ -1,0 +1,17 @@
+[/]
+foreground-color='#f8f8f8f8f2f2'
+visible-name='Monokai'
+palette=['#757571715e5e', '#f9f926267272', '#a6a6e2e22e2e', '#f4f4bfbf7575', '#6666d9d9efef', '#aeae8181ffff', '#2A2AA1A19898', '#f9f9f8f8f5f5', '#272728282222', '#f9f926267272', '#a6a6e2e22e2e', '#f4f4bfbf7575', '#6666d9d9efef', '#aeae8181ffff', '#2A2AA1A19898', '#f8f8f8f8f2f2']
+cursor-shape='ibeam'
+cursor-colors-set=false
+use-theme-colors=false
+use-system-font=false
+use-transparent-background=true
+font='Roboto Mono for Powerline 11'
+use-theme-transparency=false
+use-theme-background=false
+bold-color-same-as-fg=true
+bold-color='#f9f9f8f8f5f5'
+background-color='rgb(19,25,28)'
+background-transparency-percent=5
+scrollbar-policy='never'
