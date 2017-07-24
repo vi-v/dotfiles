@@ -85,6 +85,12 @@ source $ZSH/oh-my-zsh.sh
 #
 alias snek="ssh -X vvijayan@data.cs.purdue.edu"
 
+alias gacp='function _gacp() {
+	git add .;
+	git commit -m "$1";
+	git push;
+};_gacp'
+
 upsub() {
     git add .
     git commit -m "Update plugins submodule"

@@ -16,12 +16,14 @@ foreground-alt = #888
 ;secondary = #444444
 alert = #bd2c40
 
-background = #00000000
+background = #5F263238
 background-alt = #2196F3
 ;foreground = ${xrdb:color2}
 ;foreground-alt = ${xrdb:color3}
-primary = ${xrdb:color3}
-secondary = ${xrdb:color3}
+primary = ${#2196F3}
+secondary = ${#E91E63}
+white = ${#EEEEEE}
+black = ${#222222}
 ;alert = #bd2c40
 
 [global/wm]
@@ -31,7 +33,7 @@ margin-bottom = 5
 [bar/bar]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 23
+height = 27
 offset-x = 0
 offset-y = 0
 
@@ -39,7 +41,7 @@ tray-position = right
 tray-padding = 2
 tray-detached = false
 #tray-transparent = true
-tray-background = ${colors.background}
+tray-background = #2196F3
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -47,12 +49,15 @@ foreground = ${colors.foreground}
 overline-size = 2
 overline-color = #f00
 underline-size = 2
-underline-color = #00f
+underline-color = #2196F3
 
-spacing = 6
+border-bottom-size = 3
+border-bottom-color = #2196F3
+
+spacing = 3
 lineheight = 3
-padding-left = 5
-padding-right = 5
+padding-left = 2
+padding-right = 0
 module-margin-left = 1
 module-margin-right = 1
 # ou 1 0 0 1 2
@@ -63,26 +68,22 @@ font-0 = Roboto Mono for Powerline:style=Bold:size=9;-4
 #font-1 = Roboto:size=10;-4
 font-1 = FontAwesome:size=10;-4
 font-2 = Cousine for Powerline:size=18;-4
+font-3 = Material-Design-Iconic-Font:size=10;-4
 
-modules-left = powermenu i3 xwindow
-modules-center = date 
-modules-right = mpd volume wlan battery
+modules-left = powermenu i3 music
+modules-center = xwindow
+modules-right = volume wlan battery date
 
-;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
+;override-redirect = true
 
-#override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:0:50:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -153,19 +154,19 @@ index-sort = true
 
 ; Create click handler used to focus workspace
 ; Default: true
-enable-click = false
+enable-click = true
 
 ; Create scroll handlers used to cycle workspaces
 ; Default: true
-enable-scroll = false
+enable-scroll = true
 
 ; Wrap around when reaching the first/last workspace
 ; Default: true
-wrapping-scroll = false
+wrapping-scroll = true
 
 ; Set the scroll cycle direction 
 ; Default: true
-reverse-scroll = false
+reverse-scroll = true
 
 ; Use fuzzy (partial) matching on labels when assigning 
 ; icons to workspaces
@@ -176,12 +177,17 @@ fuzzy-match = true
 
 ; ws-icon-[0-9]+ = label;icon
 ; NOTE: The label needs to match the name of the i3 workspace
-ws-icon-0 = 1;♚
-ws-icon-1 = 2;♛
-ws-icon-2 = 3;♜
-ws-icon-3 = 4;♝
-ws-icon-4 = 5;♞
-ws-icon-default = ♟
+ws-icon-0 = 1;I
+ws-icon-1 = 2;II
+ws-icon-2 = 3;III
+ws-icon-3 = 4;IV
+ws-icon-4 = 5;V
+ws-icon-5 = 6;VI
+ws-icon-6 = 7;VII
+ws-icon-7 = 8;VIII
+ws-icon-8 = 9;IX
+ws-icon-9 = 10;X
+ws-icon-default = λ
 
 ; Available tags:
 ;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
@@ -191,7 +197,7 @@ format = <label-state> <label-mode>
 ; Available tokens:
 ;   %mode%
 ; Default: %mode%
-label-mode = %mode%
+label-mode = %icon%
 label-mode-padding = 2
 label-mode-background = #e60053
 
@@ -201,10 +207,10 @@ label-mode-background = #e60053
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-focused = %index%
-label-focused-foreground = #2196F3
-label-focused-background = #37474F
-label-focused-underline = #2196F3
+label-focused = %icon%
+label-focused-foreground = #EEEEEE
+label-focused-background = #2196F3
+label-focused-margin = 0
 label-focused-padding = 4
 
 ; Available tokens:
@@ -212,7 +218,10 @@ label-focused-padding = 4
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-unfocused = %index%
+label-unfocused = %icon%
+label-unfocused-foreground = #222222
+label-unfocused-background = #EEEEEE
+label-unfocused-margin = 0
 label-unfocused-padding = 4
 
 ; Available tokens:
@@ -220,7 +229,7 @@ label-unfocused-padding = 4
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-visible = %index%
+label-visible = %icon%
 label-visible-underline = #555555
 label-visible-padding = 4
 
@@ -229,10 +238,17 @@ label-visible-padding = 4
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-padding = 4
+
+[module/music]
+type = custom/script
+interval = 1
+
+label = %output:0:45:...%
+exec = ~/.config/polybar/mpris.sh
 
 [module/mpd]
 type = internal/mpd
@@ -326,14 +342,18 @@ label-disconnected-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 1
 
-date =
-date-alt = " %d-%m-%Y"
+date = " %a, %d %B |"
+date-alt = " %d-%m-%Y |"
 
 time = %H:%M:%S
 time-alt = %H:%M:%S
 
 format-prefix = " " 
 format-prefix-foreground = ${colors.foreground-alt}
+format-background = #2196F3
+format-foreground = #EEEEEE
+format-padding = 1
+
 #format-underline = #444
 #format-underline = #0a6cf5
 
@@ -342,34 +362,32 @@ label = %date% %time%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume>
-#label-volume = VOL
-label-volume-foreground = ${root.foreground}
-label-volume =  %{F-}%percentage:1%%
-label-muted =  %{F-}mute
+format-volume =  <ramp-volume> <bar-volume> <label-volume>
+label-volume = %percentage%
+label-volume-foreground = #EEEEEE
+label-muted = muted
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-#label-muted = sound muted
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #888
-bar-volume-foreground-1 = #888
-bar-volume-foreground-2 = #888
-bar-volume-foreground-3 = #888
-bar-volume-foreground-4 = #888
-bar-volume-foreground-5 = #888
-bar-volume-foreground-6 = #888
-
-bar-volume-gradient = false
-bar-volume-indicator = │
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = true
+bar-volume-indicator = 
 bar-volume-indicator-font = 2
 bar-volume-indicator-foreground = #ff
-bar-volume-fill = ─
+bar-volume-fill = -
 bar-volume-fill-font = 2
-bar-volume-empty = ─
+bar-volume-empty = -
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground =
 
 [module/battery]
 type = internal/battery
@@ -430,25 +448,25 @@ ramp-foreground = ${colors.foreground-alt}
 type = custom/menu
 
 label-open = 
-label-open-foreground = #f44336
+label-open-foreground = #eeeeee
 label-close = 
 label-close-foreground = #f44336
-label-separator = |
+label-separator = 
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = reboot
+menu-0-0 = REBOOT
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = SHUTDOWN
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
+menu-1-0 = CANCEL
 menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1 = REBOOT
+menu-1-1-exec = shutdown -r 0
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
+menu-2-0 = SHUTDOWN
+menu-2-0-exec = poweroff
+menu-2-1 = CANCEL
 menu-2-1-exec = menu-open-0
 
 ; vim:ft=dosini
