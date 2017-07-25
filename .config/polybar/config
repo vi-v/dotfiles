@@ -21,7 +21,7 @@ background-alt = #2196F3
 ;foreground = ${xrdb:color2}
 ;foreground-alt = ${xrdb:color3}
 primary = ${#2196F3}
-secondary = ${#E91E63}
+secondary = ${#009688}
 white = ${#EEEEEE}
 black = ${#222222}
 ;alert = #bd2c40
@@ -51,7 +51,7 @@ overline-color = #f00
 underline-size = 2
 underline-color = #2196F3
 
-border-bottom-size = 3
+border-bottom-size = 1
 border-bottom-color = #2196F3
 
 spacing = 3
@@ -68,11 +68,11 @@ font-0 = Roboto Mono for Powerline:style=Bold:size=9;-4
 #font-1 = Roboto:size=10;-4
 font-1 = FontAwesome:size=10;-4
 font-2 = Cousine for Powerline:size=18;-4
-font-3 = Material-Design-Iconic-Font:size=10;-4
+font-3 = Material\-Design\-Iconic\-Font:size=10;-4
 
-modules-left = powermenu i3 music
-modules-center = xwindow
-modules-right = volume wlan battery date
+modules-left = powermenu i3 xwindow
+modules-center = 
+modules-right = cpu memory wlan battery date
 
 wm-restack = i3
 ;override-redirect = true
@@ -80,6 +80,46 @@ wm-restack = i3
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
+[bar/audiobar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+offset-x = 0
+offset-y = 0
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #009688
+
+border-top-size = 1
+border-top-color = #EEEEEE
+
+spacing = 3
+lineheight = 3
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 1
+# ou 1 0 0 1 2
+
+#font-0 = InconsolataForPowerline:size=10;2
+#font-0 = DejaVuSansMono:size=9;2
+font-0 = Roboto Mono for Powerline:style=Bold:size=9;-4
+#font-1 = Roboto:size=10;-4
+font-1 = FontAwesome:size=10;-4
+font-2 = Cousine for Powerline:size=18;-4
+font-3 = Material-Design-Iconic-Font:size=10;-4
+
+modules-left = music
+modules-center = music-controls
+modules-right = volume
+
+wm-restack = i3
 
 [module/xwindow]
 type = internal/xwindow
@@ -90,7 +130,7 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-underline = ${colors.secondary}
-format-prefix = " "
+format-prefix = "A "
 format-prefix-foreground = ${colors.foreground-alt}
 
 label-layout = %layout%
@@ -112,67 +152,15 @@ label-mounted = %mountpoint%: %percentage_free%
 label-unmounted = %mountpoint%: not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
-[module/bspwm]
-type = internal/bspwm
-ws-icon-default = x
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
 [module/i3]
 type = internal/i3
 
-; Only show workspaces defined on the same output as the bar
-;
-; Useful if you want to show monitor specific workspaces
-; on different bars
-;
-; Default: false
 pin-workspaces = true
-
-; This will split the workspace name on ':'
-; Default: false
 strip-wsnumbers = true
-
-; Sort the workspaces by index instead of the default
-; sorting that groups the workspaces by output
-; Default: false
 index-sort = true
-
-; Create click handler used to focus workspace
-; Default: true
 enable-click = true
-
-; Create scroll handlers used to cycle workspaces
-; Default: true
 enable-scroll = true
-
-; Wrap around when reaching the first/last workspace
-; Default: true
 wrapping-scroll = true
-
-; Set the scroll cycle direction 
-; Default: true
-reverse-scroll = true
-
-; Use fuzzy (partial) matching on labels when assigning 
-; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
-; containing 'code' in the label
-; Default: false
 fuzzy-match = true
 
 ; ws-icon-[0-9]+ = label;icon
@@ -247,8 +235,25 @@ label-urgent-padding = 4
 type = custom/script
 interval = 1
 
-label = %output:0:45:...%
+format = <label>
+
+label-background = #EEEEEE
+label-foreground = #222222
+label-padding = 2
+label = %output:0:100:...%
 exec = ~/.config/polybar/mpris.sh
+
+[module/music-controls]
+type = custom/menu
+menu-0-0 = ""
+menu-0-0-exec = playerctl previous
+menu-0-1 = "        "
+menu-0-1-exec = playerctl play-pause
+menu-0-2 = ""
+menu-0-2-exec = playerctl next
+
+label-open = ""
+label-close = 
 
 [module/mpd]
 type = internal/mpd
@@ -292,19 +297,53 @@ bar-empty-foreground = ${colors.foreground-alt}
 
 [module/cpu]
 type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage%
+interval = 1.5
+
+format = <label> <ramp-coreload>
+
+label = 
+label-foreground = #EEEEEE
+
+ramp-coreload-0 = 
+ramp-coreload-0-foreground = #EEEEEE
+ramp-coreload-1 = 
+ramp-coreload-1-foreground = #CDDC39
+ramp-coreload-2 = 
+ramp-coreload-2-foreground = #8BC34A
+ramp-coreload-3 = 
+ramp-coreload-3-foreground = #4CAF50
+ramp-coreload-4 = 
+ramp-coreload-4-foreground = #FFC107
+ramp-coreload-5 = 
+ramp-coreload-5-foreground = #FF9800
+ramp-coreload-6 = 
+ramp-coreload-6-foreground = #FF5722
+ramp-coreload-7 = 
+ramp-coreload-7-foreground = #f44336
 
 [module/memory]
 type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%
+interval = 0.2
+format = <label> <bar-used>
+
+label = 
+label-font = 1
+label-foreground = #EEEEEE
+
+bar-used-width = 20
+bar-used-gradient = true
+bar-used-foreground-0 = #2196F3
+bar-used-foreground-1 = #4CAF50
+bar-used-foreground-2 = #FF9800
+bar-used-foreground-3 = #FF5722
+bar-used-indicator = 
+bar-used-indicator-font = 1
+bar-used-indicator-foreground = #fff
+bar-used-fill = 
+bar-used-fill-font = 1
+bar-used-empty = 
+bar-used-empty-font = 1
+bar-used-empty-foreground = #44
 
 [module/wlan]
 type = internal/network
@@ -313,16 +352,16 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 
-label-connected = %essid%
+label-connected = %essid%  %{F#9E9E9E}%local_ip%%{F-}
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = #EEEEEE
 
 [module/eth]
 type = internal/network
@@ -342,11 +381,11 @@ label-disconnected-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 1
 
-date = " %a, %d %B |"
-date-alt = " %d-%m-%Y |"
+date = " %a, %d %B "
+date-alt = " %d-%m-%Y "
 
-time = %H:%M:%S
-time-alt = %H:%M:%S
+time = " %H:%M:%S"
+time-alt = " %H:%M:%S"
 
 format-prefix = " " 
 format-prefix-foreground = ${colors.foreground-alt}
@@ -418,11 +457,11 @@ bar-capacity-empty = █
 bar-capacity-empty-font = 3
 bar-capacity-empty-foreground = #44ffffff
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 animation-charging-framerate = 750
 
 [module/temperature]
@@ -447,7 +486,7 @@ ramp-foreground = ${colors.foreground-alt}
 [module/powermenu]
 type = custom/menu
 
-label-open = 
+label-open = 
 label-open-foreground = #eeeeee
 label-close = 
 label-close-foreground = #f44336
