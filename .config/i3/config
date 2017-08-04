@@ -61,6 +61,9 @@ bindsym $mod+semicolon focus right
 # multiple monitors
 bindsym $mod+Shift+s exec --no-startup-id /home/mylogin/bin/monitor
 
+# take screenshot
+bindsym Print exec scrot -e 'mv $f ~/Pictures/'
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
