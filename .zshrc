@@ -6,10 +6,11 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+
 #GEOMETRY_SYMBOL_PROMPT="▶"                  # default prompt symbol
-GEOMETRY_COLOR_PROMPT="green"               # prompt symbol color
-#GEOMETRY_SYMBOL_PROMPT="›"                  # default prompt symbol
-GEOMETRY_SYMBOL_PROMPT="\e[0;31m›\e[0;32m›\e[0;35m›\e[0m"                  # default prompt symbol
+GEOMETRY_COLOR_PROMPT="magenta"               # prompt symbol color
+GEOMETRY_SYMBOL_PROMPT="›››"                  # default prompt symbol
+#GEOMETRY_SYMBOL_PROMPT="\e[0;31m›\e[0;32m›\e[0;35m›"                  # default prompt symbol
 GEOMETRY_SYMBOL_RPROMPT="◇"                 # multiline prompts
 GEOMETRY_SYMBOL_EXIT_VALUE="▷"              # displayed when exit value is != 0
 GEOMETRY_SYMBOL_ROOT="λ"                    # when logged in user is root
