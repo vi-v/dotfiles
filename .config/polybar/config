@@ -31,7 +31,7 @@ margin-top = 5
 margin-bottom = 5
 
 [bar/bar]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR}
 width = 100%
 height = 27
 offset-x = 0
@@ -81,7 +81,7 @@ scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
 [bar/audiobar]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:HDMI-0}
 width = 100%
 height = 27
 offset-x = 0
@@ -252,7 +252,7 @@ menu-0-1-exec = playerctl play-pause
 menu-0-2 = ""
 menu-0-2-exec = playerctl next
 
-label-open = ""
+label-open = "☭"
 label-close = 
 
 [module/mpd]
@@ -304,21 +304,21 @@ format = <label> <ramp-coreload>
 label = 
 label-foreground = #EEEEEE
 
-ramp-coreload-0 = 
+ramp-coreload-0 = 
 ramp-coreload-0-foreground = #EEEEEE
-ramp-coreload-1 = 
+ramp-coreload-1 = 
 ramp-coreload-1-foreground = #CDDC39
-ramp-coreload-2 = 
+ramp-coreload-2 = 
 ramp-coreload-2-foreground = #8BC34A
-ramp-coreload-3 = 
+ramp-coreload-3 = 
 ramp-coreload-3-foreground = #4CAF50
-ramp-coreload-4 = 
+ramp-coreload-4 = 
 ramp-coreload-4-foreground = #FFC107
-ramp-coreload-5 = 
+ramp-coreload-5 = 
 ramp-coreload-5-foreground = #FF9800
-ramp-coreload-6 = 
+ramp-coreload-6 = 
 ramp-coreload-6-foreground = #FF5722
-ramp-coreload-7 = 
+ramp-coreload-7 = 
 ramp-coreload-7-foreground = #f44336
 
 [module/memory]
@@ -332,7 +332,7 @@ label-foreground = #EEEEEE
 
 bar-used-width = 20
 bar-used-gradient = true
-bar-used-foreground-0 = #2196F3
+bar-used-foreground-0 = #CDDC39
 bar-used-foreground-1 = #4CAF50
 bar-used-foreground-2 = #FF9800
 bar-used-foreground-3 = #FF5722
@@ -419,7 +419,7 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = true
-bar-volume-indicator = 
+bar-volume-indicator = 
 bar-volume-indicator-font = 2
 bar-volume-indicator-foreground = #ff
 bar-volume-fill = -
