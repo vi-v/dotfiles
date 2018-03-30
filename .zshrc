@@ -1,20 +1,22 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export TERM="xterm-256color"
+
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/vishnu/.oh-my-zsh
+export ZSH=/home/vishnu/.oh-my-zsh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="mylambda"
 
-#GEOMETRY_SYMBOL_PROMPT="▶"                  # default prompt symbol
-GEOMETRY_COLOR_PROMPT="magenta"               # prompt symbol color
-GEOMETRY_SYMBOL_PROMPT="›››"                  # default prompt symbol
-#GEOMETRY_SYMBOL_PROMPT="\e[0;31m›\e[0;32m›\e[0;35m›"                  # default prompt symbol
-GEOMETRY_SYMBOL_RPROMPT="◇"                 # multiline prompts
-GEOMETRY_SYMBOL_EXIT_VALUE="▷"              # displayed when exit value is != 0
-GEOMETRY_SYMBOL_ROOT="λ"                    # when logged in user is root
-ZSH_THEME="geometry/geometry"
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -58,7 +60,9 @@ ZSH_THEME="geometry/geometry"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+git
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,20 +94,32 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+
 alias snek="ssh -X vvijayan@data.cs.purdue.edu"
 
 alias aws="ssh -i ~/Downloads/aws.pem ubuntu@buyweedfrom.me"
 
 alias gacp='function _gacp() {
-	git add .;
-	git commit -m "$1";
-	git push;
+git add .;
+git commit -m "$1";
+git push;
+
 };_gacp'
 
 upsub() {
     git add .
     git commit -m "Update plugins submodule"
     git push
+
 }
+
+killProg() {
+    for prog in $( ps -e | grep $1 | cut -d \  -f 1,2   );
+    do
+        kill $prog
+    done
+
+}
+
 source /home/vishnu/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
